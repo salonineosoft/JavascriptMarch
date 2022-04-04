@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Document</title>
+</head>
+
+<body class="text-center">
+
+    <div class="container">
+        <h4 class="text-primary"><a href="products.html">Products</a></h4>
+
+        Product Name <input type="text" id="name" class="form-group form-control col-6 m-auto" />
+        Price <input type="text" id="price" class="form-group form-control col-6 m-auto" />
+        quantity<input type="text" id="quantity" class="form-group form-control col-6 m-auto" />
+        <button onclick="add()" id="add" class="btn btn-primary mt-3">Add</button>
+
+
+    </div>
+    <script>
+        function add() {
+            let pname = document.getElementById("name").value;
+            let price = document.getElementById("price").value;
+            let quant = document.getElementById("quantity").value;
+            let details = {
+                "pname": pname,
+                "price": price,
+                "quantity": quant
+            }
+            let options = {
+                method: "POST",
+                body: JSON.stringify(details),
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            }
+            fetch("http://localhost:3000/products/", options).then((res) => {
+                return res.json();
+            })
+                .then((data) => {
+                    document.getElementById("name").value = "";
+                    document.getElementById("price").value = "";
+                    document.getElementById("quantity").value = "";
+                    alert("Added succesfully");
+                    console.log("data")
+                })
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

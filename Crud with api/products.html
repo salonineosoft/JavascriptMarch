@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <title>Document</title>
+</head>
+<body>
+   
+        <input type="text" id="name" placeholder="Name">
+        <input type="number" id="price" placeholder="Price">
+        <input type="number" id="quantity" placeholder="quantity">  
+        <button type="submit" onclick="add()" id="btn">Add</button>
+
+  
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody id="mytable">
+            
+        </tbody>
+    </table>
+</body>
+<script>
+     var sn =0;
+    fetch('http://localhost:3001/products').then((res)=>{
+
+          return res.json();
+    }).then((res)=>{
+        //console.log(res);
+       add =()=>{
+            //console.log(element);
+              let name = document.getElementById('name').value;
+              let price = document.getElementById('price').value;
+              let quantity = document.getElementById('quantity').value;
+              if(name == "") {
+                  alert("shbds");
+              } else {
+                res.map((values)=>{
+              myarr =  Array.from(res.values()); //convert map into array
+              console.log(myarr);
+              let tbl = document.getElementById('mytable')
+            let tr = document.createElement('tr');
+
+             let sn = tr.appendChild(document.createElement('td'));
+            let n = myarr.pname.push(`${name}`);
+            console.log(n);
+            sn.innerHTML = `${n}`;
+
+             let price = tr.appendChild(document.createElement('td'));
+             let p = myarr.price.push(`${price}`);
+             price.innerHTML = `${p}`
+             
+             let quantity = tr.appendChild(document.createElement('td'));
+             let q = myarr.quantity.push(`${quantity}`);
+             quantity.innerHTML = `${q}`
+            
+            //  let price = tr.appendChild(document.createElement('td'));
+            //  price.innerHTML = element.price
+            //  let quantity = tr.appendChild(document.createElement('td'));
+            // quantity.innerHTML = element.quantity;
+
+            tbl.appendChild(tr);
+              })
+            
+            }
+       }
+})
+
+       
+
+  
+
+
+  
+               
+               
+             
+</script>
+</html>

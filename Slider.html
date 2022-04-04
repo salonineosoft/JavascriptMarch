@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+.dot
+{
+height: 15px;
+width: 15px;
+margin: 0 2px;
+background-color: transparent;
+border-color: #ddd;
+border-width: 5 px;
+border-style: solid;
+border-radius: 50%;
+display: inline-block;
+transition: border-color 0.6s ease;
+}
+
+.active
+{
+border-color: #666;
+}
+
+</style>
+<body>
+    <div class="container">
+    <div class="image-sliderfade fade">
+        <img src="public/mob2.jpg" style="width: 300px;">
+        <div class="text">Image caption 1</div>
+    </div>
+    
+    <div class="image-sliderfade fade">
+        <img src="public/tops1.jpg" style="width: 300px;">
+        <div class="text">Image caption 2</div>
+    </div>
+    
+    <div class="image-sliderfade fade">
+        <img src="public/mob2.jpg" style="width: 300px;">
+        <div class="text">Image caption 3</div>
+    </div>
+    
+    <div class="image-sliderfade fade">
+        <img src="public/tops.jpg" style="width:300px;">
+        <div class="text">Image caption 4</div>
+    </div>
+    
+    </div>
+    <br>
+    <div style="text-align:center">
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+    </div>
+    <script>
+        var slideIndex = 0;
+showSlides(); // call showslide method
+
+function showSlides()
+{
+	var i;
+	var slides = document.getElementsByClassName("image-sliderfade");
+
+	var dots = document.getElementsByClassName("dot");
+
+	for (i = 0; i < slides.length; i++) {
+		slides[i].style.display = "none";
+	}
+
+	
+	slideIndex++;
+
+	
+	if (slideIndex > slides.length)
+	{
+		slideIndex = 1;
+	}
+	 slides[slideIndex - 1].style.display = "block";
+	 dots[slideIndex - 1].className += " active";
+
+	// Change image every 2 seconds
+	setTimeout(showSlides, 5000);
+}
+
+    </script>
+</body>
+</html>
+

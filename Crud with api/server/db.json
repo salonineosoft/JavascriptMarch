@@ -1,0 +1,8 @@
+
+  {
+    "products":[
+      {"pname":"A","price":2345,"quantity":2},
+      {"pname":"B","price":3345,"quantity":3},
+      {"pname":"C","price":4345,"quantity":4}
+    ]
+  }
